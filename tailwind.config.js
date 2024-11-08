@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         customGray: "#E8E9ED",
       },
+      width: {
+        500: "500px",
+      },
     },
   },
   plugins: [],
