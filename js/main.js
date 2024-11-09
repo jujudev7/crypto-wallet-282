@@ -47,3 +47,42 @@ document.querySelectorAll(".blockchain").forEach((element) => {
     }
   });
 });
+
+// Variable to track if a .blockchain has been clicked at least once
+let walletClicked = false;
+
+document.querySelectorAll(".wallet").forEach((element) => {
+  element.addEventListener("click", function () {
+    // Update the variable to indicate a click has occurred
+    walletClicked = true;
+
+    // Add opacity and remove border-black on other .blockchain elements
+    document.querySelectorAll(".wallet").forEach((div) => {
+      div.classList.add("opacity-50");
+      div.classList.remove("border-black");
+      div.style.borderColor = "";
+    });
+
+    // Remove opacity on the clicked .blockchain
+    this.classList.remove("opacity-50");
+
+    // Add border-black to the clicked .blockchain
+    this.classList.add("border-black");
+    this.style.borderColor = "black";
+  });
+
+  // Temporarily remove opacity on hover if an element has been clicked
+  element.addEventListener("mouseenter", function () {
+    if (walletClicked) {
+      this.classList.remove("opacity-50");
+    }
+  });
+
+  // Re-apply opacity when hover stops if an element has been clicked
+  element.addEventListener("mouseleave", function () {
+    if (walletClicked && !this.classList.contains("border-black")) {
+      // Reapply opacity unless the element is the clicked one
+      this.classList.add("opacity-50");
+    }
+  });
+});
